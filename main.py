@@ -21,10 +21,30 @@ class HairColor(Enum):
     blonde = "blonde"
     red = "red"
 
-class Location(BaseModel): 
-    city: str
-    state: str
-    country: str
+class Location(BaseModel):
+    city: str = Field(
+        ...,
+        min_length=2,
+        max_length=100
+        )
+    state: str = Field(
+        ...,
+        min_length=2,
+        max_length=100
+        )
+    country: str = Field(
+        ...,
+        min_length=2,
+        max_length=100
+        )
+    class Config:
+        schema_extra = {
+            "example" : {
+                "city" : "San Francisco",
+                "state" : "California",
+                "country" : "USA"
+            }
+        }
 
 class Person(BaseModel): 
     first_name: str = Field(
